@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { asyncHandler } from "../utils/asyncHandler";
-import { User } from '../models/user.model';
+import { Contact } from '../models/contact.model';
 import { APIError } from '../utils/APIError';
 import { APIResponse } from '../utils/APIResponse';
 import validator from 'validator';
@@ -17,7 +17,7 @@ export const contactUs = asyncHandler(async (req: Request, res: Response, next: 
             throw new APIError(400, "Invalid Email");
         }
 
-        const data = await User.create({
+        const data = await Contact.create({
             name,
             email,
             subject,

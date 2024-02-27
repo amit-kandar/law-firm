@@ -1,13 +1,13 @@
 import { Document, Schema, model, Model } from 'mongoose';
 
-export interface UserDocument extends Document {
+export interface ContactDocument extends Document {
     name: string;
     email: string;
     subject: string;
     message: string;
 }
 
-const UserSchema = new Schema<UserDocument, Model<UserDocument>>({
+const ContactSchema = new Schema<ContactDocument, Model<ContactDocument>>({
     name: {
         type: String,
         required: true,
@@ -30,4 +30,4 @@ const UserSchema = new Schema<UserDocument, Model<UserDocument>>({
     }
 }, { timestamps: true });
 
-export const User = model<UserDocument>('User', UserSchema);
+export const Contact = model<ContactDocument>('Contact', ContactSchema);
