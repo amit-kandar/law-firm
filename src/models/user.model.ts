@@ -16,7 +16,6 @@ const UserSchema = new Schema<UserDocument, Model<UserDocument>>({
     email: {
         type: String,
         required: true,
-        unique: true,
         lowercase: true
     },
     subject: {
