@@ -23,10 +23,12 @@ app.use(cookieParser());
 app.use(helmet());
 
 // Import all routes
-import userRouter from './routes/user.route';
+import contactRoute from './routes/contact.route';
+import serviceRoute from './routes/service.route';
 
 // Declare routes
-app.use('/api/v1/users', userRouter);
+app.use('/api/v1/contacts', contactRoute);
+app.use('/api/v1/services', serviceRoute);
 
 app.use(errorHandler);
 

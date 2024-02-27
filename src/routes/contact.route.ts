@@ -3,6 +3,6 @@ import { contactUs } from "../controllers/contact.controller";
 
 const router = Router();
 
-router.post('/contact-us', contactUs);
+router.post('/', contactUs);
 
 export default router;
