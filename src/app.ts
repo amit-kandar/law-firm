@@ -23,9 +23,10 @@ app.use(cookieParser());
 app.use(helmet());
 
 // Import all routes
-
+import userRouter from './routes/user.route';
 
 // Declare routes
+app.use('/api/v1/users', userRouter);
 
 app.use(errorHandler);
 
