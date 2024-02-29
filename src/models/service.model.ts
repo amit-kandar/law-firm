@@ -4,6 +4,7 @@ export interface ServiceDocument extends Document {
     first_name: string;
     last_name: string;
     email: string;
+    phone_number: string;
     service: string;
     subject: string;
     message: string;
@@ -22,8 +23,11 @@ const ServiceSchema = new Schema<ServiceDocument, Model<ServiceDocument>>({
     },
     email: {
         type: String,
-        required: true,
         lowercase: true
+    },
+    phone_number: {
+        type: String,
+        required: true
     },
     service: {
         type: String,

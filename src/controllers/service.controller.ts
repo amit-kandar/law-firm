@@ -7,18 +7,18 @@ import { asyncHandler } from "../utils/asyncHandler";
 
 export const service = asyncHandler(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { first_name, last_name, email, service, subject, message } = req.body;
+        const { first_name, last_name, email, service, subject, message, phone_number } = req.body;
 
-        if (validator.isEmpty(first_name) || validator.isEmpty(last_name) || validator.isEmpty(email) || validator.isEmpty(service) || validator.isEmpty(subject) || validator.isEmpty(message)) {
+        if (!first_name || !last_name || !service || !subject || !message || !phone_number) {
             throw new APIError(400, "All Fields Are Required");
         }
 
-        if (!validator.isEmail(email)) {
+        if (email && !validator.isEmail(email)) {
             throw new APIError(400, "Invalid Email");
         }
 
         const data = await Service.create({
-            first_name, last_name, email, service, subject, message
+            first_name, last_name, email, service, subject, message, phone_number
         })
 
         if (!data) {
