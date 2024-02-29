@@ -32,7 +32,7 @@ export const contactUs = asyncHandler(async (req: Request, res: Response, next: 
         }
 
         const emailOptions: nodemailer.SendMailOptions = {
-            from: 'kandaramit2001@gmail.com',
+            from: `${process.env.MAIL_USER}`,
             to: `${email}`,
             subject: 'Thank You for Contacting Us',
             html: `
