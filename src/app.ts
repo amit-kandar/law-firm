@@ -1,9 +1,7 @@
 import express, { Application } from "express";
 import cors from "cors";
-import { DATA_LIMIT } from "./constants";
-import cookieParser from "cookie-parser";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
-import helmet from "helmet";
+// import helmet from "helmet";
 
 const app: Application = express();
 
@@ -12,15 +10,13 @@ app.use(cors({
     credentials: true
 }))
 
-app.use(express.json({ limit: "16kb" }));
+app.use(express.json({ limit: "100kb" }));
 
-app.use(express.urlencoded({ extended: true, limit: DATA_LIMIT }));
+app.use(express.urlencoded({ extended: true, limit: '100kb' }));
 
 app.use(express.static("public"));
 
-app.use(cookieParser());
-
-app.use(helmet());
+// app.use(helmet());
 
 // Import all routes
 import contactRoute from './routes/contact.route';
