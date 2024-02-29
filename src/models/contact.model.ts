@@ -3,6 +3,7 @@ import { Document, Schema, model, Model } from 'mongoose';
 export interface ContactDocument extends Document {
     name: string;
     email: string;
+    phone_number: string;
     subject: string;
     message: string;
 }
@@ -15,8 +16,11 @@ const ContactSchema = new Schema<ContactDocument, Model<ContactDocument>>({
     },
     email: {
         type: String,
-        required: true,
         lowercase: true
+    },
+    phone_number: {
+        type: String,
+        required: true
     },
     subject: {
         type: String,
