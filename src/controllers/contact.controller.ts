@@ -7,28 +7,30 @@ import validator from 'validator';
 
 export const contactUs = asyncHandler(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const { name, email, subject, message } = req.body;
+        const { name, email, phone_number, subject, message } = req.body;
 
-        if (validator.isEmpty(name) || validator.isEmpty(email) || validator.isEmpty(subject) || validator.isEmpty(message)) {
+        if (!name || !phone_number || !subject || !message) {
             throw new APIError(400, "All Fields Are Required");
         }
 
-        if (!validator.isEmail(email)) {
+        if (email && !validator.isEmail(email)) {
             throw new APIError(400, "Invalid Email");
         }
 
         const data = await Contact.create({
             name,
             email,
+            phone_number,
             subject,
             message
-        })
+        });
 
         if (!data) {
             throw new APIError(400, "Failed To Store Data");
         }
+
         res.status(201).json(new APIResponse(201, { data }, "Successfully Created Data"));
     } catch (error) {
         next(error);
     }
-})
+});
