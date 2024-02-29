@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import cors from "cors";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 // import helmet from "helmet";
+import { createTransporter } from "./config/nodemailer";
 
 const app: Application = express();
 
@@ -17,6 +18,9 @@ app.use(express.urlencoded({ extended: true, limit: '100kb' }));
 app.use(express.static("public"));
 
 // app.use(helmet());
+
+
+createTransporter()
 
 // Import all routes
 import contactRoute from './routes/contact.route';
